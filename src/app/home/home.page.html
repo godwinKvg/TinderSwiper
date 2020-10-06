@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" color="medium">
+        <ion-icon slot="icon-only" name="settings-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      <img class="logo" src="../../assets/tinder-logo.png">
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" color="medium">
+        <ion-icon slot="icon-only" name="chatbubbles-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>  
+
+  <sw-card-wrapper #cardWrapper>
+    <div class="card" *ngFor="let avatar of avatars, let index = index"
+      [class.visible]="avatar.visible" [class.hidden]="!avatar.visible"
+      swSwipeable
+      [width]="350"
+      [height]="500"
+      [orientation]="'x'"
+      (swiped)="swiped($event, index)">
+      <img [src]="avatar.image" [alt]="avatar.name">
+      <h2>{{avatar.name}}, {{avatar.age}}</h2>
+    </div>
+  </sw-card-wrapper>
+
+
+  <div class="card_bg_box">
+    <div class="card_bg_1">
+      <ion-item  *ngFor="let result of results">
+        <ion-label>{{ result }}</ion-label>
+      </ion-item>
+    </div>
+    <div class="card_bg_2"></div>
+  </div>
+
+
+  <div class="button_box">
+    <ion-button (click)="refresh()" class="small_button" mode="ios" shape="round" fill="outline" >
+      <ion-icon color="warning" name="refresh"></ion-icon>
+    </ion-button>
+    <ion-button (click)="swipeleft()" mode="ios" class="large_button" shape="round" fill="outline" >
+      <ion-icon color="danger" name="close"></ion-icon>
+    </ion-button>
+    <div class="space"></div>
+    <ion-button (click)="swiperight()" mode="ios" class="large_button" shape="round" fill="outline">
+      <ion-icon color="success" name="heart"></ion-icon>
+    </ion-button>
+    <ion-button class="small_button" mode="ios" shape="round" fill="outline">
+      <ion-icon color="primary" name="location-sharp"></ion-icon>
+    </ion-button>
+  </div>
+  
+ 
+</ion-content>
